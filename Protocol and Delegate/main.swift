@@ -1,11 +1,33 @@
-//
-//  main.swift
-//  Protocol and Delegate
-//
-//  Created by 小木曽佑介 on 2023/01/28.
-//
 
-import Foundation
+protocol AdvancedLifeSupport {
+    func perfomCPR()
+}
 
-print("Hello, World!")
+
+class EmergencyCallHandler {
+    var delegate: AdvancedLifeSupport?
+    
+    func medicalEmergency() {
+        delegate?.perfomCPR()
+    }
+}
+
+
+class Pramedic: AdvancedLifeSupport {
+    
+    init(handeler: EmergencyCallHandler) {
+        handeler.delegate = self
+    }
+    
+    func perfomCPR() {
+        print("30 per second ...")
+    }
+}
+
+
+let emilio = EmergencyCallHandler()
+let pete = Pramedic(handeler: emilio)
+
+print(emilio.medicalEmergency())
+
 
